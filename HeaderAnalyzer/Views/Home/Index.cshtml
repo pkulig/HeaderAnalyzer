@@ -1,0 +1,24 @@
+﻿@model HeaderAnalyzer.Models.HomeModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    @using (Html.BeginForm("Index", "Home"))
+    {
+        @Html.Label("Url", "Please input url adress for processing (protocol required - HTTP or HTTPS) :")
+        @Html.TextBoxFor(x => x.Url, new { @class = "form-control", @placeholder = "e.g. http://wp.pl/" })
+        <input type="submit" value="Submit" />
+    }
+</div>
+
+@if (Model.AnalyzeResult != null && string.IsNullOrEmpty(Model.Error))
+{
+    <partial name="ResultsView" model="Model.AnalyzeResult" />
+}
+
+@if(!string.IsNullOrEmpty(Model.Error))
+{
+    <partial name="Error" model="Model.Error" />
+}
+

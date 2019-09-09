@@ -1,0 +1,21 @@
+﻿@model HeaderAnalyzer.Models.AnalyzeModel
+@*
+    
+*@
+
+<div>
+    <div>
+        @Html.Label("Keywords", "Keywords list:")
+        @Html.DisplayFor(x => x.KeywordsList)
+    </div>
+    <div>
+        @Html.Label("Results", "Keywords occurences:")
+        @if (Model.Results != null)
+        {
+            @foreach (var item in Model.Results)
+            {
+                <p>@Html.Label("", $"{item.Key}:{item.Value}")</p>
+            }
+        }
+    </div>
+</div>
